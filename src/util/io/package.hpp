@@ -88,8 +88,6 @@ public:
   Package();
   virtual ~Package();
 
-  VCSP  vcs;               ///< The version control system to use
-
   /// Is a file opened?
   bool isOpened() const;
   /// Must the package be saved with saveAs()?
@@ -184,11 +182,8 @@ public:
   }
 
 protected:
-  virtual VCSP getVCS() {
-      if (vcs == nullptr)
-          return make_intrusive<VCS>();
-      return vcs;
-  }
+  // TODO: I dislike putting this here very much. There ought to be a better way.
+  virtual VCSP getVCS() { return make_intrusive<VCS>(); }
 
   /// true if this is a zip file, false if a directory
   bool isZipfile() const { return !wxDirExists(filename); }
@@ -306,7 +301,6 @@ protected:
   DECLARE_REFLECTION_VIRTUAL();
   friend void after_reading(Packaged& p, Version file_app_version);
   
-
 private:
   bool   fully_loaded;  ///< Is the package fully loaded?
   friend struct JustAsPackageProxy;

@@ -49,7 +49,6 @@ $built_in_functions = array(
 	'random_shuffle'	=>'',
 	'random_select'		=>'',
 	'random_select_many'	=>'',
-	'get_card_styling'	=>'',
 	// keywords
 	'expand_keywords'	=>'',	'expand_keywords_rule'=>'expand_keywords',
 	'keyword_usage'		=>'',
@@ -75,7 +74,6 @@ $built_in_functions = array(
 	'linear_blend'		=>'',
 	'masked_blend'		=>'',
 	'combine_blend'		=>'',
-	'overlay'		=>'',
 	'set_mask'		=>'',
 	'set_alpha'		=>'',
 	'set_combine'		=>'',
@@ -84,7 +82,6 @@ $built_in_functions = array(
 	'recolor_image'		=>'',
 	'enlarge'		=>'',
 	'crop'			=>'',
-	'resize_image'		=>'',
 	'flip_horizontal'	=>'',
 	'flip_vertical'		=>'',
 	'rotate'		=>'',

@@ -166,14 +166,14 @@ PrintJobP make_print_job(Window* parent, const SetP& set, const ExportCardSelect
   // Let the user choose cards
   // controls
   ExportWindowBase wnd(parent, _TITLE_("select cards print"), set, choices);
-  wxCheckBox* space = new wxCheckBox(&wnd, wxID_ANY, L"Put space between cards");
+  wxCheckBox* space = new wxCheckBox(&wnd, wxID_ANY, _LABEL_("put space between cards"));
   space->SetValue(settings.print_layout);
   // layout
   wxSizer* s = new wxBoxSizer(wxVERTICAL);
     wxSizer* s2 = new wxBoxSizer(wxHORIZONTAL);
       wxSizer* s3 = wnd.Create();
       s2->Add(s3, 1, wxEXPAND | wxALL, 8);
-      wxSizer* s4 = new wxStaticBoxSizer(wxVERTICAL, &wnd, L"Settings");
+      wxSizer* s4 = new wxStaticBoxSizer(wxVERTICAL, &wnd, _TITLE_("settings"));
         s4->Add(space, 1, wxALL | wxALIGN_TOP, 8);
       s2->Add(s4, 1, wxEXPAND | (wxALL & ~wxLEFT), 8);
     s->Add(s2, 1, wxEXPAND);

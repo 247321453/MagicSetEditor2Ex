@@ -552,6 +552,7 @@ label:
 	installer size:			Size:
 	installer status:		Status:
 	no version:				-
+	put space between cards:	Put space between cards
 
 ############################################################## Buttons/checkboxes/choices in the GUI
 button:
@@ -684,6 +685,7 @@ title:
 	installing updates:	Installing updates
 	
 	cannot create file:	Cannot create file
+	settings:		Settings
 
 ############################################################## Action (undo/redo) names
 action:
@@ -848,7 +850,7 @@ type:
 	game:			game
 	set:			set
 	stylesheet:		stylesheet
-	export template:export template
+	export template:	export template
 	symbol:			symbol
 	card:			card
 	cards:			cards

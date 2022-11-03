@@ -31,14 +31,14 @@ menu:
 	undo:				撤销%s	Ctrl+Z
 	redo:				重做%s	Ctrl+Y
 	cut:				剪切	Ctrl+X
-	cut card:		Cu&t	Ctrl+X
-	cut keyword:	Cu&t	Ctrl+X
+	cut card:		剪切	Ctrl+X
+	cut keyword:	剪切	Ctrl+X
 	copy:				复制	Ctrl+C
-	copy card:			&Copy	Ctrl+C
-	copy keyword:		&Copy	Ctrl+C
+	copy card:			复制	Ctrl+C
+	copy keyword:		复制	Ctrl+C
 	paste:				粘贴	Ctrl+V
-	paste card:		&Paste	Ctrl+V
-	paste keyword:	&Paste	Ctrl+V
+	paste card:		粘贴	Ctrl+V
+	paste keyword:	粘贴	Ctrl+V
 	select all:				Select &All	Ctrl+A
 	find:				查找	Ctrl+F
 	find next:			查找下一个	F3
@@ -49,7 +49,7 @@ menu:
 	cards:			卡牌
 	previous card:		上一张卡牌	PgUp
 	next card:			下一张卡牌	PgDn
-	search cards:			&Search Cards	Ctrl+K
+	search cards:			搜索卡牌	Ctrl+K
 	add card:			添加卡牌	Ctrl+Enter
 	add cards:			批量添加卡牌...
 	remove card:		删除所选卡牌
@@ -529,7 +529,7 @@ label:
 	selection top:			顶部
 	selection width:		宽
 	selection height:		高
-	zoom:					缩放
+	#zoom:					缩放
 	fix aspect ratio:		修改比例 (宽/高)
 	zoom amount:			调整
 	zoom amount x:			调整 &X
@@ -564,6 +564,7 @@ label:
 	installer size:			大小:
 	installer status:		位置:
 	no version:				-
+	put space between cards:	卡牌之间保留空白空间
 
 ############################################################## Buttons/checkboxes/choices in the GUI
 button:
@@ -589,10 +590,10 @@ button:
 	evaluate:				确定
 	
 	# Welcome
-	new set:				New Set
-	open set:				Open Set
-	check updates:			Check Update
-	last opened set:		Last Set
+	new set:			New set
+	open set:			Open set
+	check updates:			检查更新
+	last opened set:	Last opened set
 	
 	# Preferences
 	open sets in new window:	在新窗口打开/创建所有套牌
@@ -659,7 +660,7 @@ title:
 	new set:					新建套牌
 	open set:					打开套牌
 	save set:					套牌另存为
-	save set as directory:	Save Set As Directory
+	save set as directory:	套牌另存为文件夹
 	save image:					保存图片
 	updates available:			可用更新
 	save changes:				保存修改？
@@ -676,7 +677,7 @@ title:
 	select columns:				选择栏目
 	select cards:				选择卡牌
 	select cards export:    	导出选中的卡牌
-	select cards print:	Select the cards you want to print
+	select cards print:	选择你需要打印的卡牌
 	# slice
 	slice image:				图片裁剪
 	# pack
@@ -696,6 +697,7 @@ title:
 	installing updates:			安装更新
 	
 	cannot create file:			无法创建文件
+	settings:			设置
 
 ############################################################## Action (undo/redo) names
 action:
@@ -856,7 +858,7 @@ type:
 	game:			游戏
 	set:			套牌
 	stylesheet:		样式表
-	export template:导出模板
+	export template:	导出模板
 	symbol:			符号
 	card:			卡牌
 	cards:			套牌

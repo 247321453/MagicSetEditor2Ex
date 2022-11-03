@@ -484,7 +484,8 @@ bool TextValueEditor::onChar(wxKeyEvent& ev) {
       return true;
     default:
       #ifdef __WXMSW__
-      if (ev.GetKeyCode() >= _(' ') && ev.GetKeyCode() == (int)ev.GetRawKeyCode()) {
+      if ((ev.GetKeyCode() >= _(' ') && ev.GetKeyCode() == (int)ev.GetRawKeyCode())
+          || (ev.GetKeyCode() == 0 && ev.GetKeyCode() != (int)ev.GetRawKeyCode())) {// ascii
         // This check is need, otherwise pressing a key, say "0" on the numpad produces "a0"
         // (don't ask me why)
       #else

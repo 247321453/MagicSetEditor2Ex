@@ -19,14 +19,14 @@ On windows, the program can be compiled with Visual Studio (recommended) or with
  * Download and install [vcpkg](https://github.com/microsoft/vcpkg)
  * Use vcpkg to install wxwidgets, boost, hunspell
 ````
-vcpkg install wxwidgets
-vcpkg install boost-smart-ptr
-vcpkg install boost-regex
-vcpkg install boost-logic
-vcpkg install boost-pool
-vcpkg install boost-iterator
-vcpkg install hunspell
-vcpkg integrate install
+vcpkg install wxwidgets:x64-windows-static
+vcpkg install boost-smart-ptr:x64-windows-static
+vcpkg install boost-regex:x64-windows-static
+vcpkg install boost-logic:x64-windows-static
+vcpkg install boost-pool:x64-windows-static
+vcpkg install boost-iterator:x64-windows-static
+vcpkg install hunspell:x64-windows-static
+vcpkg integrate install:x64-windows-static
 ````
  * Then just use "Open Folder" from inside visual studio to open the Magic Set Editor source code root folder.
  * Select the configuration that you want to build, and hit F7.
@@ -45,17 +45,22 @@ The tests can be run from inside visual studio
  * Download and install [msys2](https://www.msys2.org/)
  * Install a recent version of the gcc compiler, cmake, and wxWidgets libraries:
 ````
-pacman -S mingw32/mingw-w64-i686-gcc
-pacman -S mingw32/mingw-w64-i686-wxWidgets
-pacman -S mingw32/mingw-w64-i686-boost
-pacman -S mingw32/mingw-w64-i686-hunspell
+pacman -S mingw64/mingw-w64-x86_64-gcc
+pacman -S mingw64/mingw-w64-x86_64-wxWidgets
+pacman -S mingw64/mingw-w64-x86_64-boost
+pacman -S mingw64/mingw-w64-x86_64-hunspell
 pacman -S cmake
 ````
    Use `mingw64/mingw-w64-x86_64-...` instead of for the 64bit build
  * Build
 ````
+export PATH=/mingw64/bin/:$PATH
 cmake -G "MSYS Makefiles" -H. -Bbuild -DCMAKE_BUILD_TYPE=Release
 cmake --build build
+
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
 ````
 
 ## Building on linux

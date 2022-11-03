@@ -58,7 +58,7 @@ void ChoiceThumbnailRequest::store(const Image& img) {
   if (img.Ok()) {
     ChoiceThumbnail& thumbnail = style().thumbnails[id];
     ChoiceThumbnailLock lock(thumbnail.mutex);
-    thumbnail.bitmap = img;
+    thumbnail.bitmap = img;//wxBitmap(img);//Fix
     thumbnail.status = THUMB_OK;
   }
 }

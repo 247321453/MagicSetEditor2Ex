@@ -238,12 +238,12 @@ wxListItemAttr* KeywordList::OnGetItemAttr(long pos) const {
 
 void KeywordList::onContextMenu(wxContextMenuEvent&) {
   wxMenu m;
-  add_menu_item_tr(&m, ID_EDIT_CUT, "cut", "cut_keyword");
-  add_menu_item_tr(&m, ID_EDIT_COPY, "copy", "copy_keyword");
-  add_menu_item_tr(&m, ID_EDIT_PASTE, "paste", "paste_keyword");
+  add_menu_item_tr(&m, ID_EDIT_CUT, "cut", "cut_keyword", wxITEM_CHECK);
+  add_menu_item_tr(&m, ID_EDIT_COPY, "copy", "copy_keyword", wxITEM_CHECK);
+  add_menu_item_tr(&m, ID_EDIT_PASTE, "paste", "paste_keyword", wxITEM_CHECK);
   m.AppendSeparator();
-  add_menu_item_tr(&m, ID_KEYWORD_ADD, "keyword_add", "add_keyword");
-  add_menu_item_tr(&m, ID_KEYWORD_REMOVE, "keyword_del", "remove_keyword");
+  add_menu_item_tr(&m, ID_KEYWORD_ADD, "keyword_add", "add_keyword", wxITEM_CHECK);
+  add_menu_item_tr(&m, ID_KEYWORD_REMOVE, "keyword_del", "remove_keyword", wxITEM_CHECK);
   PopupMenu(&m);
 }
 

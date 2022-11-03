@@ -469,9 +469,9 @@ void DataEditor::onChar(wxKeyEvent& ev) {
 void DataEditor::onContextMenu(wxContextMenuEvent& ev) {
   if (current_editor) {
     wxMenu m;
-    add_menu_item_tr(&m, ID_EDIT_CUT, "cut", "cut");
-    add_menu_item_tr(&m, ID_EDIT_COPY, "copy", "copy");
-    add_menu_item_tr(&m, ID_EDIT_PASTE, "paste", "paste");
+    add_menu_item_tr(&m, ID_EDIT_CUT, "cut", "cut", wxITEM_CHECK);
+    add_menu_item_tr(&m, ID_EDIT_COPY, "copy", "copy", wxITEM_CHECK);
+    add_menu_item_tr(&m, ID_EDIT_PASTE, "paste", "paste", wxITEM_CHECK);
     m.Enable(ID_EDIT_CUT,   canCut());
     m.Enable(ID_EDIT_COPY,  canCopy());
     m.Enable(ID_EDIT_PASTE, canPaste());

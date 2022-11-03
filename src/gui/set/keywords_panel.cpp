@@ -102,11 +102,11 @@ void KeywordsPanel::initControls() {
   
   // init menus
   menuKeyword = new wxMenu();
-    add_menu_item_tr(menuKeyword, ID_KEYWORD_PREV, nullptr, "previous_keyword");
-    add_menu_item_tr(menuKeyword, ID_KEYWORD_NEXT, nullptr, "next_keyword");
-    add_menu_item_tr(menuKeyword, ID_KEYWORD_SEARCH, nullptr, "search keywords");
+    add_menu_item_tr(menuKeyword, ID_KEYWORD_PREV, nullptr, "previous_keyword", wxITEM_CHECK);
+    add_menu_item_tr(menuKeyword, ID_KEYWORD_NEXT, nullptr, "next_keyword", wxITEM_CHECK);
+    add_menu_item_tr(menuKeyword, ID_KEYWORD_SEARCH, nullptr, "search keywords", wxITEM_CHECK);
     menuKeyword->AppendSeparator();
-    add_menu_item_tr(menuKeyword, ID_KEYWORD_ADD, "keyword_add", "add_keyword");
+    add_menu_item_tr(menuKeyword, ID_KEYWORD_ADD, "keyword_add", "add_keyword", wxITEM_CHECK);
     // NOTE: space after "Del" prevents wx from making del an accellerator
     // otherwise we delete a card when delete is pressed inside the editor
     add_menu_item(menuKeyword, ID_KEYWORD_REMOVE, "keyword_del",  _MENU_("remove_keyword")+_(" "), _HELP_("remove_keyword"));

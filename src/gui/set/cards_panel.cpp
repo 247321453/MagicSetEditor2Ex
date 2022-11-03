@@ -77,10 +77,10 @@ CardsPanel::CardsPanel(Window* parent, int id)
     add_menu_item(menuCard, ID_CARD_REMOVE, "card_del", _MENU_("remove card")+_(" "), _HELP_("remove card"));
     menuCard->AppendSeparator();
     auto menuRotate = new wxMenu();
-      add_menu_item_tr(menuRotate, ID_CARD_ROTATE_0, "card_rotate_0", "rotate_0", wxITEM_CHECK);
-      add_menu_item_tr(menuRotate, ID_CARD_ROTATE_270, "card_rotate_270", "rotate_270", wxITEM_CHECK);
-      add_menu_item_tr(menuRotate, ID_CARD_ROTATE_180, "card_rotate_180", "rotate_180", wxITEM_CHECK);
-      add_menu_item_tr(menuRotate, ID_CARD_ROTATE_90, "card_rotate_90", "rotate_90", wxITEM_CHECK);
+    add_menu_item_tr(menuRotate, ID_CARD_ROTATE_0, "card_rotate_0", "rotate_0", wxITEM_CHECK);
+    add_menu_item_tr(menuRotate, ID_CARD_ROTATE_270, "card_rotate_270", "rotate_270", wxITEM_CHECK);
+    add_menu_item_tr(menuRotate, ID_CARD_ROTATE_180, "card_rotate_180", "rotate_180", wxITEM_CHECK);
+    add_menu_item_tr(menuRotate, ID_CARD_ROTATE_90, "card_rotate_90", "rotate_90", wxITEM_CHECK);
     add_menu_item_tr(menuCard, wxID_ANY, "card_rotate", "orientation", wxITEM_NORMAL, menuRotate);
     menuCard->AppendSeparator();
     // This probably belongs in the window menu, but there we can't remove the separator once it is added
@@ -163,7 +163,7 @@ wxMenu* CardsPanel::makeAddCardsSubmenu(bool add_single_card_option) {
   // default item?
   if (add_single_card_option) {
     cards_scripts_menu = new wxMenu();
-    add_menu_item_tr(cards_scripts_menu, ID_CARD_ADD, "card_add", "add_card");
+    add_menu_item_tr(cards_scripts_menu, ID_CARD_ADD, "card_add", "add_card", wxITEM_CHECK);
     cards_scripts_menu->AppendSeparator();
   }
   // create menu for add_cards_scripts
@@ -192,10 +192,10 @@ void CardsPanel::initUI(wxToolBar* tb, wxMenuBar* mb) {
   tb->AddSeparator();
   add_tool_tr(tb, ID_CARD_ROTATE, "card_rotate", "rotate_card", false, wxITEM_DROPDOWN);
   auto menuRotate = new wxMenu();
-    add_menu_item_tr(menuRotate, ID_CARD_ROTATE_0, "card_rotate_0", "rotate_0", wxITEM_CHECK);
-    add_menu_item_tr(menuRotate, ID_CARD_ROTATE_270, "card_rotate_270", "rotate_270", wxITEM_CHECK);
-    add_menu_item_tr(menuRotate, ID_CARD_ROTATE_180, "card_rotate_180", "rotate_180", wxITEM_CHECK);
-    add_menu_item_tr(menuRotate, ID_CARD_ROTATE_90, "card_rotate_90", "rotate_90", wxITEM_CHECK);
+  add_menu_item_tr(menuRotate, ID_CARD_ROTATE_0, "card_rotate_0", "rotate_0", wxITEM_CHECK);
+  add_menu_item_tr(menuRotate, ID_CARD_ROTATE_270, "card_rotate_270", "rotate_270", wxITEM_CHECK);
+  add_menu_item_tr(menuRotate, ID_CARD_ROTATE_180, "card_rotate_180", "rotate_180", wxITEM_CHECK);
+  add_menu_item_tr(menuRotate, ID_CARD_ROTATE_90, "card_rotate_90", "rotate_90", wxITEM_CHECK);
   tb->SetDropdownMenu(ID_CARD_ROTATE, menuRotate);
   // Filter/search textbox
   tb->AddSeparator();

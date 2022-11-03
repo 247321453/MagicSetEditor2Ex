@@ -182,11 +182,11 @@ SetWindow::SetWindow(Window* parent, const SetP& set)
 
 wxMenu* SetWindow::makeExportMenu() {
   auto menuExport = new wxMenu();
-  add_menu_item_tr(menuExport, ID_FILE_EXPORT_HTML, "export_html", "export_html");
-  add_menu_item_tr(menuExport, ID_FILE_EXPORT_IMAGE, "export_image", "export_image");
-  add_menu_item_tr(menuExport, ID_FILE_EXPORT_IMAGES, "export_images", "export_images");
-  add_menu_item_tr(menuExport, ID_FILE_EXPORT_APPR, "export_apprentice", "export_apprentice");
-  add_menu_item_tr(menuExport, ID_FILE_EXPORT_MWS, "export_mws", "export_mws");
+  add_menu_item_tr(menuExport, ID_FILE_EXPORT_HTML, "export_html", "export_html", wxITEM_CHECK);
+  add_menu_item_tr(menuExport, ID_FILE_EXPORT_IMAGE, "export_image", "export_image", wxITEM_CHECK);
+  add_menu_item_tr(menuExport, ID_FILE_EXPORT_IMAGES, "export_images", "export_images", wxITEM_CHECK);
+  add_menu_item_tr(menuExport, ID_FILE_EXPORT_APPR, "export_apprentice", "export_apprentice", wxITEM_CHECK);
+  add_menu_item_tr(menuExport, ID_FILE_EXPORT_MWS, "export_mws", "export_mws", wxITEM_CHECK);
   return menuExport;
 }
 

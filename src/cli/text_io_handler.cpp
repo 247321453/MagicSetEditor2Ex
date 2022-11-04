@@ -98,6 +98,10 @@ TextIOHandler& TextIOHandler::operator << (const String& str) {
   return *this << static_cast<const Char*>(str.c_str());
 }
 
+TextIOHandler& TextIOHandler::operator << (int i) {
+    return *this << i;
+}
+
 void TextIOHandler::flush() {
   if (raw_mode) return;
   if (have_console) {

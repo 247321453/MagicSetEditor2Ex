@@ -132,7 +132,7 @@ SCRIPT_FUNCTION(resize_image) {
   SCRIPT_OPTIONAL_PARAM(String, mode) {
     parse_enum(mode, resize_quality);
   } else {
-    resize_quality = wxIMAGE_QUALITY_NEAREST;
+    resize_quality = wxIMAGE_QUALITY_HIGH;
   }
   return make_intrusive<ResizeImage>(input, width, height, resize_quality);
 }

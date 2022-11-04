@@ -26,6 +26,7 @@ public:
   /// Output text to the console
   TextIOHandler& operator << (const Char*);
   TextIOHandler& operator << (const String&);
+  TextIOHandler& operator << (const int);
   
   /// Read a line from stdin
   String getLine();

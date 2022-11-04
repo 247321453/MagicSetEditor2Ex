@@ -93,10 +93,11 @@ void export_images(Window* parent, const SetP& set);
 
 /// Export the image for each card in a list of cards
 void export_images(const SetP& set, const vector<CardP>& cards,
-                   const String& path, const String& filename_template, FilenameConflicts conflicts);
+                   const String& path, const String& filename_template, FilenameConflicts conflicts,
+                   int quality = 100, int out_width = -1, int out_height = -1);
 
 /// Export the image of a single card
-void export_image(const SetP& set, const CardP& card, const String& filename);
+void export_image(const SetP& set, const CardP& card, const String& filename, int quality=100, int out_width=-1, int out_height=-1);
 
 /// Generate a bitmap image of a card
 Bitmap export_bitmap(const SetP& set, const CardP& card);

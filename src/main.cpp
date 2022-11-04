@@ -185,10 +185,10 @@ int MSE::OnRun() {
                              << PARAM << _("PACKAGE") << NORMAL << _(" [") << PARAM << _("PACKAGE") << NORMAL << _(" ...]]");
           cli << _("\n         \tCreate an instaler, containing the listed packages.");
           cli << _("\n         \tIf no output filename is specified, the name of the first package is used.");
-          cli << _("\n\n  ") << BRIGHT << _("--export") << NORMAL << PARAM << _(" TEMPLATE SETFILE ") << NORMAL << _(" [") << PARAM << _("OUTFILE") << NORMAL << _("]");
+          cli << _("\n\n  ") << BRIGHT << _("--export_t") << NORMAL << PARAM << _(" TEMPLATE SETFILE ") << NORMAL << _(" [") << PARAM << _("OUTFILE") << NORMAL << _("]");
           cli << _("\n         \tExport a set using an export template.");
           cli << _("\n         \tIf no output filename is specified, the result is written to stdout.");
-          cli << _("\n\n  ") << BRIGHT << _("--export-images") << NORMAL << PARAM << _(" FILE") << NORMAL << _(" [") << PARAM << _("IMAGE") << NORMAL << _("]");
+          cli << _("\n\n  ") << BRIGHT << _("--export") << NORMAL << PARAM << _(" FILE") << NORMAL << _(" [") << PARAM << _("IMAGE") << NORMAL << _("]");
           cli << _("\n         \tExport the cards in a set to image files,");
           cli << _("\n         \tIMAGE is the same format as for 'export all card images'.");
           cli << _("\n\n  ") << BRIGHT << _("--cli") << NORMAL << _(" [")
@@ -232,7 +232,8 @@ int MSE::OnRun() {
           }
           CLISetInterface cli_interface(set,quiet);
           return EXIT_SUCCESS;
-        } else if (arg == _("--export-images")) {
+        } else if (arg == _("--export")) {
+          //mse.exe --export 2.mse-set out/{card.gamecode}.png 100 44 64
           if (args.size() < 2) {
             handle_error(Error(_("No input file specified for --export")));
             return EXIT_FAILURE;
@@ -250,10 +251,16 @@ int MSE::OnRun() {
             path += _("/x");
             out = out.substr(pos + 1);
           }
+          int quality = args.size() >= 4 ? atoi(args[3]) : 100;
+          int out_width = args.size() >= 5 ? atoi(args[4]) : -1;
+          int out_height = args.size() >= 6 ? atoi(args[5]) : -1;
+          //char msg[1024];
+          //sprintf(msg, "export set, out=%ls, q=%d, size=%dx%d", out.wc_str(), quality, out_width, out_height);
+          //cli.show_message(MESSAGE_OUTPUT, msg);
           // export
-          export_images(set, set->cards, path, out, CONFLICT_NUMBER_OVERWRITE);
+          export_images(set, set->cards, path, out, CONFLICT_NUMBER_OVERWRITE, quality, out_width, out_height);
           return EXIT_SUCCESS;
-        } else if (args[0] == _("--export")) {
+        } else if (args[0] == _("--export_t")) {
           if (args.size() < 2) {
             throw Error(_("No export template specified for --export"));
           } else if (args.size() < 3) {

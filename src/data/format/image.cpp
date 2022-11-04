@@ -15,14 +15,27 @@
 #include <data/settings.hpp>
 #include <render/card/viewer.hpp>
 #include <wx/filename.h>
+#include <gfx/gfx.hpp>
 
 // ----------------------------------------------------------------------------- : Single card export
 
-void export_image(const SetP& set, const CardP& card, const String& filename) {
-  Image img = export_bitmap(set, card).ConvertToImage();
-  img.SetOption(wxIMAGE_OPTION_QUALITY, 100);
-  img.SaveFile(filename);  // can't use Bitmap::saveFile, it wants to know the file type
+void export_image(const SetP& set, const CardP& card, const String& filename, int quality, int out_width, int out_height) {
+  Image in = export_bitmap(set, card).ConvertToImage();
+  in.SetOption(wxIMAGE_OPTION_QUALITY, quality);
+  Image out;
+  if (out_width > 0 && out_height > 0) {
+      out = resample(in, out_width, out_height);
+      if (in.GetWidth() != out_width && in.GetHeight() != out_height) {
+          in.Destroy();
+      }
+      out.SetOption(wxIMAGE_OPTION_QUALITY, quality);
+  }
+  else {
+      out = in;
+  }
+  out.SaveFile(filename);  // can't use Bitmap::saveFile, it wants to know the file type
               // but image.saveFile determines it automagicly
+  out.Destroy();
 }
 
 class UnzoomedDataViewer : public DataViewer {
@@ -68,7 +81,8 @@ Bitmap export_bitmap(const SetP& set, const CardP& card) {
 
 
 void export_images(const SetP& set, const vector<CardP>& cards,
-                   const String& path, const String& filename_template, FilenameConflicts conflicts)
+                   const String& path, const String& filename_template, FilenameConflicts conflicts,
+                   int quality, int out_width, int out_height)
 {
   wxBusyCursor busy;
   // Script
@@ -89,6 +103,6 @@ void export_images(const SetP& set, const vector<CardP>& cards,
     // write image
     filename = fn.GetFullPath();
     used.insert(filename);
-    export_image(set, card, filename);
+    export_image(set, card, filename, quality, out_width, out_height);
   }
 }

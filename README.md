@@ -26,7 +26,7 @@ vcpkg install boost-logic:x64-windows-static
 vcpkg install boost-pool:x64-windows-static
 vcpkg install boost-iterator:x64-windows-static
 vcpkg install hunspell:x64-windows-static
-vcpkg integrate install:x64-windows-static
+vcpkg integrate install
 ````
  * Then just use "Open Folder" from inside visual studio to open the Magic Set Editor source code root folder.
  * Select the configuration that you want to build, and hit F7.

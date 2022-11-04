@@ -20,6 +20,7 @@
 
 void export_image(const SetP& set, const CardP& card, const String& filename) {
   Image img = export_bitmap(set, card).ConvertToImage();
+  img.SetOption(wxIMAGE_OPTION_QUALITY, 100);
   img.SaveFile(filename);  // can't use Bitmap::saveFile, it wants to know the file type
               // but image.saveFile determines it automagicly
 }

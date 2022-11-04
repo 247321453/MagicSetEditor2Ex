@@ -63,7 +63,7 @@ ScriptValueP export_set(SetP const& set, vector<CardP> const& cards, ExportTempl
   if (exp->create_directory) {
     if (outname.empty()) throw Error(_("No output filename specified for export"));
     wxFileName fn(outname);
-    info.directory_relative = fn.GetName() + _("-files");
+    info.directory_relative = fn.GetName();// +_("-files");
     fn.SetFullName(info.directory_relative);
     info.directory_absolute = fn.GetFullPath();
     if (!wxDirExists(info.directory_absolute)) {

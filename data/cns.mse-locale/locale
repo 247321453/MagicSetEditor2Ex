@@ -648,6 +648,7 @@ button:
 	install group:				全部安装
 	upgrade group:				全部升级
 	remove group:				全部移除
+	apply language:				变更语言
 
 ############################################################## Titles in the GUI
 title:

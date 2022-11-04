@@ -18,12 +18,17 @@
 #include <data/format/formats.hpp>
 #include <wx/dcbuffer.h>
 #include <wx/filename.h>
+#include <util/io/package_manager.hpp>
+#include <data/locale.hpp>
 
 // 2007-02-06: New HoverButton, hopefully this on works on GTK
 #define USE_HOVERBUTTON
 
 // ----------------------------------------------------------------------------- : WelcomeWindow
 
+bool __compare_package_name(const PackagedP& a, const PackagedP& b) {
+    return a->name() < b->name();
+}
 WelcomeWindow::WelcomeWindow()
   : wxFrame(nullptr, wxID_ANY, _TITLE_("magic set editor"), wxDefaultPosition, wxSize(520,380), wxDEFAULT_DIALOG_STYLE | wxTAB_TRAVERSAL | wxCLIP_CHILDREN )
   , logo (load_resource_image(_("about")))
@@ -58,6 +63,28 @@ WelcomeWindow::WelcomeWindow()
     #endif
     if (open_last) s2->Add(open_last, 0, wxALL, 2);
     s2->AddStretchSpacer();
+
+    //
+    language = new wxComboBox(this, wxID_ANY, _(""), wxDefaultPosition, wxDefaultSize, 0, nullptr, wxCB_READONLY);
+    // set values
+    vector<PackagedP> locales;
+    package_manager.findMatching(_("*.mse-locale"), locales);
+    sort(locales.begin(), locales.end(), __compare_package_name);
+    int n = 0;
+    FOR_EACH(package, locales) {
+        language->Append(package->full_name, package.get());
+        if (settings.locale == package->name()) {
+            language->SetSelection(n);
+        }
+        n++;
+    }
+    wxSizer* s3 = new wxBoxSizer(wxHORIZONTAL);
+    s3->AddSpacer(5);
+    s3->Add(language, 0, wxALL, 1);
+    auto apply_language = new wxButton(this, ID_APPLY_LANGUAGE, _BUTTON_("apply language"));
+    s3->AddSpacer(25);
+    s3->Add(apply_language, 0, wxALL, 1);
+    s2->Add(s3);
   s1->Add(s2);
   SetSizer(s1);
 }
@@ -85,6 +112,19 @@ void WelcomeWindow::draw(DC& dc) {
   String version_string = _("version ") + app_version.toString() + version_suffix;
   dc.GetTextExtent(version_string,&tw,&th);
   dc.DrawText(version_string, 4, ws.GetHeight()-th-4);
+}
+
+void WelcomeWindow::onApplyLanguage(wxCommandEvent&) {
+    // locale
+    int n = language->GetSelection();
+    if (n == wxNOT_FOUND) return;
+    Packaged* p = (Packaged*)language->GetClientData(n);
+    settings.locale = p->name();
+    the_locale = Locale::byName(settings.locale);
+
+    //close app
+    (new WelcomeWindow())->Show();
+    Close();
 }
 
 void WelcomeWindow::onOpenSet(wxCommandEvent&) {
@@ -133,6 +173,7 @@ BEGIN_EVENT_TABLE(WelcomeWindow, wxFrame)
   EVT_BUTTON         (ID_FILE_NEW,           WelcomeWindow::onNewSet)
   EVT_BUTTON         (ID_FILE_OPEN,          WelcomeWindow::onOpenSet)
   EVT_BUTTON         (ID_FILE_RECENT,        WelcomeWindow::onOpenLast)
+  EVT_BUTTON         (ID_APPLY_LANGUAGE, WelcomeWindow::onApplyLanguage)
   EVT_BUTTON         (ID_FILE_CHECK_UPDATES, WelcomeWindow::onCheckUpdates)
   EVT_PAINT          (                       WelcomeWindow::onPaint)
 //  EVT_IDLE           (                       WelcomeWindow::onIdle)

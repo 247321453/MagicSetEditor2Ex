@@ -636,6 +636,7 @@ button:
 	install group:			&Install All
 	upgrade group:			&Upgrade All
 	remove group:			&Remove All
+	apply language:			Apply language
 
 ############################################################## Titles in the GUI
 title:

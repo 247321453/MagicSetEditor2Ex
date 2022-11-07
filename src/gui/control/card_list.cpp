@@ -319,9 +319,10 @@ int CardListBase::OnGetItemImage(long pos) const {
 }
 
 wxListItemAttr* CardListBase::OnGetItemAttr(long pos) const {
-  if (!set->game->card_list_color_script) return nullptr;
-  Context& ctx = set->getContext(getCard(pos));
-  item_attr.SetTextColour(set->game->card_list_color_script.invoke(ctx)->toColor());
+    if (!set->game->color_field) return nullptr;
+    ChoiceValueP val = static_pointer_cast<ChoiceValue>(getCard(pos)->data[set->game->color_field]);
+    assert(val);
+    item_attr.SetTextColour(set->game->color_field->choice_colors_cardlist[canonical_name_form(val->value())]); // if it doesn't exist we get black
   return &item_attr;
 }
 

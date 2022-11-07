@@ -13,6 +13,7 @@
 #include <script/scriptable.hpp>
 #include <script/dependency.hpp>
 #include <util/dynamic_arg.hpp>
+#include <data/field/choice.hpp>
 
 DECLARE_POINTER_TYPE(Field);
 DECLARE_POINTER_TYPE(Style);
@@ -41,7 +42,7 @@ public:
   vector<FieldP>          set_fields;             ///< Fields for set information
   IndexMap<FieldP,StyleP> default_set_style;      ///< Default style for the set fields, because it is often the same
   vector<FieldP>          card_fields;            ///< Fields on each card
-  OptionalScript          card_list_color_script;  ///< Script that determines the color of items in the card list
+  ChoiceFieldP            color_field;            ///< Field to use for text color (optional)
   vector<StatsDimensionP> statistics_dimensions;  ///< (Additional) statistics dimensions
   vector<StatsCategoryP>  statistics_categories;  ///< (Additional) statistics categories
   vector<PackTypeP>       pack_types;        ///< Types of random card packs to generate

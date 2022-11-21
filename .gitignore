@@ -11,6 +11,9 @@
 /data/*.mse-include
 /data/*.mse-symbol-font
 /data/*.mse-export-template
+*.ttf
+*.otf
+*lnk
 /data/dictionaries
 /data/packages
 /data/old

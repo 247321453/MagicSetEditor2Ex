@@ -19,7 +19,7 @@ On windows, the program can be compiled with Visual Studio (recommended) or with
  * Download and install [vcpkg](https://github.com/microsoft/vcpkg)
  * Use vcpkg to install wxwidgets, boost, hunspell
 ````
-vcpkg install wxwidgets:x64-windows-static
+vcpkg install wxwidgets[fonts]:x64-windows-static
 vcpkg install boost-smart-ptr:x64-windows-static
 vcpkg install boost-regex:x64-windows-static
 vcpkg install boost-logic:x64-windows-static

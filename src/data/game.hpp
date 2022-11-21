@@ -13,6 +13,7 @@
 #include <script/scriptable.hpp>
 #include <script/dependency.hpp>
 #include <util/dynamic_arg.hpp>
+#include <data/fontfile.hpp>
 #include <data/field/choice.hpp>
 
 DECLARE_POINTER_TYPE(Field);
@@ -25,6 +26,7 @@ DECLARE_POINTER_TYPE(KeywordParam);
 DECLARE_POINTER_TYPE(KeywordMode);
 DECLARE_POINTER_TYPE(Keyword);
 DECLARE_POINTER_TYPE(WordList);
+DECLARE_POINTER_TYPE(FontFile);
 DECLARE_POINTER_TYPE(AddCardsScript);
 DECLARE_POINTER_TYPE(AutoReplace);
 
@@ -47,8 +49,9 @@ public:
   vector<StatsCategoryP>  statistics_categories;  ///< (Additional) statistics categories
   vector<PackTypeP>       pack_types;        ///< Types of random card packs to generate
   vector<WordListP>       word_lists;        ///< Word lists for editing with a drop down list
+  vector<FontFileP>       font_files;        ///< Word lists for editing with a drop down list
   vector<AddCardsScriptP> add_cards_scripts;    ///< Scripts for adding multiple cards to the set
-  vector<AutoReplaceP>  auto_replaces;      ///< Things to autoreplace in textboxes
+  vector<AutoReplaceP>    auto_replaces;      ///< Things to autoreplace in textboxes
   
   bool                    has_keywords;           ///< Does this game use keywords?
   OptionalScript          keyword_match_script;  ///< For the keyword editor

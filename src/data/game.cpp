@@ -59,6 +59,7 @@ IMPLEMENT_REFLECTION(Game) {
   REFLECT(keyword_parameter_types);
   REFLECT_NO_SCRIPT(keywords);
   REFLECT_NO_SCRIPT(word_lists);
+  REFLECT_NO_SCRIPT(font_files);
   REFLECT_NO_SCRIPT(add_cards_scripts);
   REFLECT_NO_SCRIPT(auto_replaces);
 }
@@ -98,6 +99,12 @@ void Game::validate(Version v) {
 
 void Game::initCardListColorScript() {
   if(color_field) return; // already done
+
+  //load private font file
+  for (auto font_file : font_files) {
+      wxFont::AddPrivateFont(absoluteFilename() + "/" + font_file->path);
+  }
+
   // find a field with choice_colors_cardlist
   FOR_EACH(s, card_fields) {
     ChoiceFieldP cf = dynamic_pointer_cast<ChoiceField>(s);

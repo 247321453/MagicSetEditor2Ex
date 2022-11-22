@@ -10,6 +10,7 @@
 
 #include <util/prec.hpp>
 #include <util/reflect.hpp>
+#include <map>
 
 DECLARE_POINTER_TYPE(FontFile);
 
@@ -18,13 +19,26 @@ DECLARE_POINTER_TYPE(FontFile);
 /// A word in a WordList
 class FontFile : public IntrusivePtrVirtualBase {
 public:
-	FontFile();
+  FontFile();
 
-	String path;         ///< Path of font
+  String name;
 
-	inline FontFileP clone() const { return make_intrusive<FontFile>(*this); }
+  String path;         ///< Path of font
 
-	DECLARE_REFLECTION();
+  inline FontFileP clone() const { return make_intrusive<FontFile>(*this); }
+
+  DECLARE_REFLECTION();
 };
 
-void after_reading(FontFile& ar, Version);
+class FontManager {
+public:
+  FontManager();
+  bool load(String name, String path);
+  bool is_load(String name);
+private:
+  map<String, String> loaded_map;
+};
+
+
+/// The global locale object
+extern FontManager font_manager;

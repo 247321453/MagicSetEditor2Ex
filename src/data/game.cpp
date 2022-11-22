@@ -24,7 +24,7 @@
 IMPLEMENT_DYNAMIC_ARG(Game*, game_for_reading, nullptr);
 
 Game::Game()
-  : has_keywords(false)
+  : has_keywords(false), font_loaded(false)
   , dependencies_initialized(false)
 {}
 
@@ -100,11 +100,6 @@ void Game::validate(Version v) {
 void Game::initCardListColorScript() {
   if(color_field) return; // already done
 
-  //load private font file
-  for (auto font_file : font_files) {
-      wxFont::AddPrivateFont(absoluteFilename() + "/" + font_file->path);
-  }
-
   // find a field with choice_colors_cardlist
   FOR_EACH(s, card_fields) {
     ChoiceFieldP cf = dynamic_pointer_cast<ChoiceField>(s);
@@ -116,10 +111,28 @@ void Game::initCardListColorScript() {
   color_field = ChoiceFieldP();
 }
 
+void  Game::initFonts() {
+  if (font_loaded) return;
+
+  font_loaded = true;
+  //load private font file
+  for (auto font_file : font_files) {
+    auto font_path = absoluteFilename() + "/" + font_file->path;
+    if (!font_file->name) {
+        font_file->name = get_file_name(font_file->path);
+    }
+    if (font_manager.is_load(font_file->name)) {
+        cli.show_message(MESSAGE_INFO, _("is loaded font:" + font_file->name));
+    }
+    font_manager.load(font_file->name, font_path);
+  }
+}
+
 // special behaviour of reading/writing GamePs: only read/write the name
 
 void Reader::handle(GameP& game) {
   game = Game::byName(getValue());
+  game->initFonts();
 }
 void Writer::handle(const GameP& game) {
   if (game) handle(game->name());

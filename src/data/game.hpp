@@ -72,6 +72,8 @@ public:
   
   /// Initialize card_list_color_script
   void initCardListColorScript();
+
+  void initFonts();
   
   static String typeNameStatic();
   String typeName() const override;
@@ -81,6 +83,8 @@ protected:
   void validate(Version) override;
   
   DECLARE_REFLECTION_OVERRIDE();
+private:
+  bool font_loaded;
 };
 
 inline String type_name(const Game&) {

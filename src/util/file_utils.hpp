@@ -69,3 +69,5 @@ bool rename_file_or_dir(const String& old_name, const String& new_name);
 /// Move files/dirs that are ignored by packages to another directory
 void move_ignored_files(const String& from_dir, const String& to_dir);
 
+
+String get_file_name(String path);

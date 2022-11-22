@@ -237,3 +237,23 @@ void move_ignored_files(const String& from_dir, const String& to_dir) {
     dir.Traverse(im);
   }
 }
+
+
+String get_file_name(String filename) {
+  size_t last_sep = filename.find_last_of(_('/'));
+  if (last_sep == String::npos) {
+    last_sep = filename.find_last_of(_('\\'));
+  }
+  String tmp;
+  if (last_sep != String::npos) {
+    tmp = filename.substr(last_sep + 1);
+  }
+  else {
+    tmp = filename;
+  }
+  size_t ext = tmp.find_last_of(_('.'));
+  if (ext == String::npos) {
+      return tmp;
+  }
+  return tmp.substr(0, ext);
+}

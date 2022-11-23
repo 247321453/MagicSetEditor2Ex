@@ -201,8 +201,10 @@ String symbols_to_html(const String& str, SymbolFont& symbol_font, double size) 
       wxFileName fn;
       fn.SetPath(ei.directory_absolute);
       fn.SetFullName(filename);
+      img.SetOption(wxIMAGE_OPTION_QUALITY, 100);
       img.SaveFile(fn.GetFullPath());
       it = ei.exported_images.insert(make_pair(filename, wxSize(img.GetWidth(), img.GetHeight()))).first;
+      img.Destroy();
     }
     html += _("<img src='") + filename + _("' alt='") + html_escape(sym.text)
          +  _("' width='")  + (String() << it->second.x)
@@ -430,8 +432,10 @@ SCRIPT_FUNCTION(write_image_file) {
   if (!image.Ok()) throw Error(_("Unable to generate image for file ") + file);
   // write
   ensure_dir_valid(out_path);
+  image.SetOption(wxIMAGE_OPTION_QUALITY, 100);
   image.SaveFile(out_path);
   ei.exported_images.insert(make_pair(file, wxSize(image.GetWidth(), image.GetHeight())));
+  image.Destroy();
   SCRIPT_RETURN(file);
 }
 

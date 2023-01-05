@@ -188,9 +188,13 @@ int MSE::OnRun() {
           cli << _("\n\n  ") << BRIGHT << _("--export_t") << NORMAL << PARAM << _(" TEMPLATE SETFILE ") << NORMAL << _(" [") << PARAM << _("OUTFILE") << NORMAL << _("]");
           cli << _("\n         \tExport a set using an export template.");
           cli << _("\n         \tIf no output filename is specified, the result is written to stdout.");
-          cli << _("\n\n  ") << BRIGHT << _("--export") << NORMAL << PARAM << _(" FILE") << NORMAL << _(" [") << PARAM << _("IMAGE") << NORMAL << _("]");
+          //out/{card.gamecode}.png 100 44 64
+          cli << _("\n\n  ") << BRIGHT << _("--export") << NORMAL << PARAM << _(" FILE") << NORMAL << _(" [") << PARAM << _("IMAGE") << NORMAL << _("] [QUALITY] [WIDTH] [HEIGHT]");
           cli << _("\n         \tExport the cards in a set to image files,");
-          cli << _("\n         \tIMAGE is the same format as for 'export all card images'.");
+          cli << _("\n         \tIMAGE is the same format as for 'export all card images'. such as \"out/{card.name}.png\",");
+          cli << _("\n         \tQUALITY is the quality [0-100] of export all card images,");
+          cli << _("\n         \tWIDTH is the width of export all card images,");
+          cli << _("\n         \tHEIGHT is the height of export all card images.");
           cli << _("\n\n  ") << BRIGHT << _("--cli") << NORMAL << _(" [")
                              << PARAM << _("FILE") << NORMAL << _("] [")
                              << BRIGHT << _("--quiet") << NORMAL << _("] [")

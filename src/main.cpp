@@ -27,6 +27,7 @@
 #include <wx/wfstream.h>
 #include <wx/txtstrm.h>
 #include <wx/socket.h>
+#include <wx/dir.h>
 
 ScriptValueP export_set(SetP const& set, vector<CardP> const& cards, ExportTemplateP const& exp, String const& outname);
 
@@ -93,6 +94,22 @@ int MSE::OnRun() {
     init_file_formats();
     cli.init();
     package_manager.init();
+
+    //region load private fonts 
+    auto data_dir = package_manager.getFontsDir(false);
+    wxDir dir(data_dir);
+    if (dir.IsOpened())
+    {
+      wxArrayString files;
+
+      dir.GetAllFiles(data_dir, &files);
+
+      for (int i = 0; i < files.GetCount(); i++) {
+          wxFont::AddPrivateFont(files[i]);
+      }
+    }
+    //endregion
+
     settings.read();
     the_locale = Locale::byName(settings.locale);
     nag_about_ascii_version();

@@ -17,14 +17,13 @@
 #include <data/add_cards_script.hpp>
 #include <util/io/package_manager.hpp>
 #include <script/script.hpp>
-#include <cli/text_io_handler.hpp>
 
 // ----------------------------------------------------------------------------- : Game
 
 IMPLEMENT_DYNAMIC_ARG(Game*, game_for_reading, nullptr);
 
 Game::Game()
-  : has_keywords(false), font_loaded(false)
+  : has_keywords(false)
   , dependencies_initialized(false)
 {}
 
@@ -59,7 +58,6 @@ IMPLEMENT_REFLECTION(Game) {
   REFLECT(keyword_parameter_types);
   REFLECT_NO_SCRIPT(keywords);
   REFLECT_NO_SCRIPT(word_lists);
-  REFLECT_NO_SCRIPT(font_files);
   REFLECT_NO_SCRIPT(add_cards_scripts);
   REFLECT_NO_SCRIPT(auto_replaces);
 }
@@ -111,28 +109,10 @@ void Game::initCardListColorScript() {
   color_field = ChoiceFieldP();
 }
 
-void  Game::initFonts() {
-  if (font_loaded) return;
-
-  font_loaded = true;
-  //load private font file
-  for (auto font_file : font_files) {
-    auto font_path = absoluteFilename() + "/" + font_file->path;
-    if (!font_file->name) {
-        font_file->name = get_file_name(font_file->path);
-    }
-    if (font_manager.is_load(font_file->name)) {
-        cli.show_message(MESSAGE_INFO, _("is loaded font:" + font_file->name));
-    }
-    font_manager.load(font_file->name, font_path);
-  }
-}
-
 // special behaviour of reading/writing GamePs: only read/write the name
 
 void Reader::handle(GameP& game) {
   game = Game::byName(getValue());
-  game->initFonts();
 }
 void Writer::handle(const GameP& game) {
   if (game) handle(game->name());

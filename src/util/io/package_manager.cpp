@@ -144,6 +144,12 @@ String PackageManager::getDictionaryDir(bool l) const {
   else             return dir + _("/dictionaries/");
 }
 
+String PackageManager::getFontsDir(bool l) const {
+    String dir = (l ? local : global).getDirectory();
+    if (dir.empty()) return wxEmptyString;
+    else             return dir + _("/fonts/");
+}
+
 // ----------------------------------------------------------------------------- : PackageManager : on disk
 
 bool PackageManager::checkDependency(const PackageDependency& dep, bool report_errors) {

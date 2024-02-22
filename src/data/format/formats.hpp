@@ -97,7 +97,8 @@ void export_images(const SetP& set, const vector<CardP>& cards,
                    int quality = 100, int out_width = -1, int out_height = -1);
 
 /// Export the image of a single card
-void export_image(const SetP& set, const CardP& card, const String& filename, int quality=100, int out_width=-1, int out_height=-1);
+void export_image(const SetP& set, const CardP& card, const String& filename,
+                  int quality = 100, int out_width = -1, int out_height = -1);
 
 /// Generate a bitmap image of a card
 Bitmap export_bitmap(const SetP& set, const CardP& card);

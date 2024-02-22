@@ -173,6 +173,8 @@ public:
   
   /// Get the directory for dictionary files
   String getDictionaryDir(bool local) const;
+
+  String getFontsDir(bool local) const;
   
   // --------------------------------------------------- : Packages on a server
   

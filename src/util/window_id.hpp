@@ -82,8 +82,7 @@ enum MenuID {
   ID_MODE_PAINT,
   ID_MODE_MAX,
 
-
-
+  // Window button (MainWindow)
   ID_APPLY_LANGUAGE,
 };
 

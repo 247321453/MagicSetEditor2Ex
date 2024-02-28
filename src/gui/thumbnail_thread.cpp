@@ -11,12 +11,16 @@
 #include <util/platform.hpp>
 #include <util/error.hpp>
 #include <wx/thread.h>
+#include <wx/stdpaths.h>
 
 // ----------------------------------------------------------------------------- : Image Cache
 
 String user_settings_dir();
 String image_cache_dir() {
-  String dir = user_settings_dir() + _("/cache");
+  String dir = wxStandardPaths::Get().GetDataDir() + _("/user/cache");
+  if (!wxDirExists(dir)) {
+      dir = user_settings_dir() + _("/cache");
+  }
   if (!wxDirExists(dir)) wxMkdir(dir);
   return dir + _("/");
 }

@@ -16,7 +16,7 @@ The code depends on
 On windows, the program can be compiled with Visual Studio (recommended) or with mingw-gcc.
 
  * Download and install [Visual Studio Community edition](https://visualstudio.microsoft.com/vs/community/)
- * Download and install [vcpkg](https://github.com/microsoft/vcpkg)
+ * Download and install [vcpkg](https://github.com/microsoft/vcpkg)(or intall from Visual Studio 2022+)
  * Use vcpkg to install wxwidgets, boost, hunspell
 ````
 vcpkg install wxwidgets[fonts]:x64-windows-static
